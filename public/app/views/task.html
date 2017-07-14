@@ -1,0 +1,43 @@
+<div ng-show="loaded">
+
+    <div class="form margin-bottom">
+        <form ng-submit="addTask(task)" style="text-align: center;">
+            <input type="text" class="input" ng-model="task.Name" placeholder="New task name..." />
+            <input type="submit" class="button button-inline button-blue" value="Add Task" />
+        </form>
+    </div>
+
+    <div class="list list-projects">
+        <table border="0">
+            <thead>
+                <th>Task name (Editable)</th>
+                <th>Total Time spent</th>
+                <th>Remove</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="task in tasks" class="ng-scope" >
+                    <td ng-class="{ disabled: task.disbl}">
+                        <input type="text" class="input input-projectname" ng-model="task.tasks" ng-click="savePreviousTask(task.tasks)" ng-blur="updateTask(task.tasks)" />   
+                    </td>
+                    <td>
+                        {{ getTimeSpent(task) }}
+                    </td>
+                    <td class="align-left" ng-class="{ disabled: task.disbl}">
+                        <a class="button button-inline button-delete" href="" ng-click="deleteTask(task)"><i class="icon-trash"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div ng-hide="loaded">
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+</div>

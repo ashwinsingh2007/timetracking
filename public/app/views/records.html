@@ -1,0 +1,43 @@
+<div ng-show="loaded">
+
+    <div class="notice" ng-hide="tasks.length > 0">
+        Head to Task section and create your task to track time on!
+    </div>
+    
+    <div class="notice" ng-show="records.length <= 0 && tasks.length > 0">
+        Shouldn't you start tracking some time?
+    </div>
+
+    <div class="list list-logs" ng-show="records.length > 0">
+        <table border="0" style="border-collapse: separate;border-spacing: 1em;">
+            <thead>
+                <th>Time</th>
+                <th class="hide-mobile">Task</th>
+                <th>Remove</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="record in records" style="box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.41);">
+                    <td>
+                        <span class="time">{{ getTime(record) }}</span>
+                        <span class="date">{{ getDateStart(record) }}</span>
+                    </td>
+                    <td>
+                        <span>{{record.tasks}}</span>
+                    </td>
+                    <td class="align-left">
+                        <a class="button button-inline button-delete" href="" ng-click="deleteRecord(record)"><i class="icon-trash"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div ng-hide="loaded">
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+</div>

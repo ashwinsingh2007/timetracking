@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="appTimeTracker">
+
+<head>
+    <meta charset="utf-8">
+    <title>Time Tracker App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/fontello.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/angular-chart.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+<body style="">
+<nav class="navbar navbar-default" style="    width: 100%;
+    background: #3ca5ff;
+    border-radius: 0px;
+    color: white;
+    margin-bottom: 5px;
+    box-shadow: 0px 0px 22px rgba(51, 51, 51, 0.89);
+    border-color: #3ca5ff;
+    position: fixed;
+    top: 0;
+    z-index: 9;">
+    <div class="col-md-11">
+        <div class="navbar-header" style="width: 100%;border-right: 1px solid #337ab7;">
+            <div class="tracker clear" ng-controller="TrackerController" ng-class="{ loading: !loaded }">
+                <div class="actions align-center">
+                    <span class="counter">{{ counter }}</span>
+                    <button class="btn btn-default btn-md" ng-click="startTracker()" ng-if="!status"><i class="icon-play"></i> Start</button>
+                    <button class="btn btn-default btn-md"  ng-click="stopTracker()" ng-if="status"><i class="icon-stop"></i> Stop</button>
+                </div>
+                <div class="form">
+                    <div class="form-row">
+                        <label style="font-size: 25px;font-stretch: extra-condensed;">Task:</label>
+                        <select class="input form-control" style="display: inline;" ng-model="selectedItem" ng-change="updateTask(selectedItem)" ng-class="{ disabled: disbl}">
+                            <option ng-repeat="record in recordsmain" value="{{record.tasks}}">{{record.tasks}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1" style="padding-left: 0px;margin-top: 25px;">
+        <button type="button" class="btn btn-danger" style="box-shadow: 0px 0px 22px rgba(8, 8, 8, 0.28);">
+          <a href="logout" style="color: #ffffff;"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
+        </button>
+    </div>
+    
+</nav>
+    <div class="container" style="width: 100%;margin-top: 130px;padding-left: 0px;" ng-controller="AppController" ng-cloak class="ng-cloak">
+        <div id="app">
+            <div class="container clear" style="width: 100%;padding-left:0px;">
+                <nav style="    padding: 5px;
+                                z-index: 999999999999999;
+    height: 1000px;
+    position: fixed;
+    margin-top: 118px;
+    box-shadow: 0px 0px 22px rgba(0, 0, 0, 0.45);
+    border-top: 3px solid #3ca5ff;">
+                    <ul>
+                        <li ng-class="{ active: navIsActive('/') }"><a href="#/"><i class="icon-logs"></i>Records</a></li>
+                        <li ng-class="{ active: navIsActive('/tasks') }"><a href="#/tasks"><i class="icon-projects"></i>Tasks</a></li>
+                    </ul>
+                </nav>
+                <main style="height: 1000px;">
+                    <div ng-view></div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="scripts/angular.js"></script>
+    <script type="text/javascript" src="scripts/angular-route.js"></script>
+    <script src="http://code.angularjs.org/1.0.0rc10/angular-cookies-1.0.0rc10.js"></script>
+    <script type="text/javascript" src="scripts/Chart.js"></script>
+    <script type="text/javascript" src="scripts/angular-chart.js"></script>
+    <script type="text/javascript" src="scripts/moment.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/controllers/appController.js"></script>
+    <script type="text/javascript" src="app/controllers/trackerController.js"></script>
+    <script type="text/javascript" src="app/controllers/recordsController.js"></script>
+    <script type="text/javascript" src="app/controllers/tasksController.js"></script>
+    <script type="text/javascript" src="app/services/statusFactory.js"></script>
+    <script type="text/javascript" src="app/services/recordsFactory.js"></script>
+    <script type="text/javascript" src="app/services/tasksFactory.js"></script>
+    <script type="text/javascript" src="app/services/literals.js"></script>
+
+</body>
+
+</html>

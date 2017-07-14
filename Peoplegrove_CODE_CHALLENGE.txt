@@ -1,0 +1,25 @@
+"""
+Peoplegrove CODE CHALLENGE
+===============================
+
+Create a web application to perform Time Tracking. After login user should be able 
+to log time spent on a particular task. Should be able to add and edit records of current
+day. He should be able to view past records but should not be able to edit the'm. Also, 
+provide a admin login which could view all the entries made by each user. 
+
+- Please use Node.js backend and Angular 1.5 on frontend. 
+- Application should be deployed on Heroku free instance. 
+- For database Postgres could be used. 
+- User should be able to login via facebook. This could be the only way of signup.
+
+Some Notes:
+1) Using openly available tutorials is great. We're a startup, so no
+points are awarded for working hard, only getting the job done quickly
+and correctly.
+
+2) If you have any questions, feel free to ask. Points are not deducted
+for questions. Part of the exercise is to see how we communicate and if
+we can be efficient.
+
+3) Make sure you test your work, and if you have them, provide the tests
+to us. It's important to know there is attention to detail in your work.
