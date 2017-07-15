@@ -25,7 +25,8 @@
                         <span>{{record.tasks}}</span>
                     </td>
                     <td class="align-left">
-                        <a class="button button-inline button-delete" href="" ng-click="deleteRecord(record)"><i class="icon-trash"></i></a>
+                        <a class="button button-inline button-delete" href="" ng-hide="record.disbl == true" ng-click="deleteRecord(record)"><i class="icon-trash"></i></a>
+                        <a style="border: 0;padding: 0; width: auto; line-height: 24px;height: 24px;text-align: center;font-size: 1.2rem;background: none;color: rgba(178, 23, 23, 0.54);" class="button button-inline button-delete" ng-show="record.disbl == true" href="">Past Created tasks,can't update or deleted.</a>
                     </td>
                 </tr>
             </tbody>

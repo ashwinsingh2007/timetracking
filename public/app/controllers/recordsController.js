@@ -18,6 +18,12 @@
                 $scope.records = [];
                 for(i in data){
                     if(data[i].seconds > 0){
+                        debugger;
+                        if(data[i].startDate < moment().format("DD-MM-YYYY")){
+                            data[i].disbl=true;
+                        }else{
+                            data[i].disbl=false;
+                        }
                         $scope.records.push(data[i])
                     }
                 }
@@ -35,6 +41,11 @@
                 $scope.records = [];
                 for(i in data){
                     if(data[i].seconds > 0){
+                        if(data[i].startDate < moment().format("DD-MM-YYYY")){
+                            data[i].disbl=true;
+                        }else{
+                            data[i].disbl=false;
+                        }
                         $scope.records.push(data[i])
                     }
                 }
@@ -47,6 +58,11 @@
                 $scope.records = [];
                 for(i in data){
                     if(data[i].seconds > 0){
+                        if(data[i].startDate < moment().format("DD-MM-YYYY")){
+                            data[i].disbl=true;
+                        }else{
+                            data[i].disbl=false;
+                        }
                         $scope.records.push(data[i])
                     }
                 }
@@ -66,6 +82,11 @@
             $scope.records = [];
             for(i in data){
                 if(data[i].seconds > 0){
+                    if(data[i].startDate < moment().format("DD-MM-YYYY")){
+                            data[i].disbl=true;
+                    }else{
+                        data[i].disbl=false;
+                    }
                     $scope.records.push(data[i])
                 }
             }

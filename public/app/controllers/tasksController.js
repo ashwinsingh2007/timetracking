@@ -61,6 +61,13 @@
             $scope.loaded = false;
             tasksFactory.updateTask($scope.UserId,$scope.savePreviousTask, updatedTask,$scope.Permission).then(function(data) {
                 $scope.loaded = true;
+                for(i in data){
+                    if(data[i].startDate < moment().format("DD-MM-YYYY")){
+                        data[i].disbl=true;
+                    }else{
+                        data[i].disbl=false;
+                    }
+                }
                 $scope.tasks = data;
                 $rootScope.$emit("CallMethod", data);
             });
@@ -73,6 +80,13 @@
             $scope.loaded = false;
             tasksFactory.deleteTask($scope.UserId, task,$scope.Permission).then(function(data) {
                 $scope.loaded = true;
+                for(i in data){
+                    if(data[i].startDate < moment().format("DD-MM-YYYY")){
+                        data[i].disbl=true;
+                    }else{
+                        data[i].disbl=false;
+                    }
+                }
                 $scope.tasks = data;
                 $rootScope.$emit("CallMethod", data);
             });
