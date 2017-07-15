@@ -5,15 +5,15 @@ var db = require('../models/database');
 router.get('/tasks', function(req, res) {
     var query = '';
     var array_data = [req.query.id];
-    if (req.query.permission == 'admin') {
+    if (req.query.permission.trim() == 'admin') {
         if(req.query.Type == 'UniqueTask'){
-            query = 'SELECT userid,tasks,sum(seconds) as seconds FROM public.taskinfo where userid = $1 or userid != $1 group by userid,tasks'
+            query = 'SELECT userid,tasks,sum(seconds) as seconds,"startDate"  FROM public.taskinfo where userid = $1 or userid != $1 group by userid,tasks,"startDate" '
         } else {
             query = 'select * from taskinfo where userid = $1 or userid != $1';
         }
     } else {
         if(req.query.Type == 'UniqueTask'){
-            query = 'SELECT userid,tasks,sum(seconds) as seconds FROM public.taskinfo where userid = $1 group by userid,tasks  limit 100'
+            query = 'SELECT userid,tasks,sum(seconds) as seconds,"startDate" FROM public.taskinfo where userid = $1 group by userid,"startDate",tasks  limit 100'
         } else {
             query = 'select * from taskinfo where userid = $1 limit 100';
         }
@@ -37,15 +37,15 @@ router.post('/tasks', function(req, res) {
     var array_data = [req.body.id, req.body.task.tasks, req.body.task.startDate, req.body.task.seconds];
     try {
         db.insertData(query, array_data, function(result) {
-            if (req.body.permission == 'admin') {
+            if (req.body.permission.trim() == 'admin') {
                 if(req.body.Type == 'UniqueTask'){
-                    query = 'SELECT userid,tasks,sum(seconds) FROM public.taskinfo group by userid,tasks'
+                    query = 'SELECT userid,tasks,sum(seconds) as seconds,"startDate"  FROM public.taskinfo group by userid,tasks,"startDate" '
                 } else {
                     query = 'select * from taskinfo where userid = $1 and userid != $1';
                 }
             } else {
                 if(req.body.Type == 'UniqueTask'){
-                    query = 'SELECT userid,tasks,sum(seconds) as seconds FROM public.taskinfo where userid = $1 group by userid,tasks  limit 100'
+                    query = 'SELECT userid,tasks,sum(seconds) as seconds,"startDate"  FROM public.taskinfo where userid = $1 group by userid,tasks,"startDate"   limit 100'
                 } else {
                     query = 'select * from taskinfo where userid = $1 limit 100';
                 }
@@ -75,16 +75,16 @@ router.put('/tasks', function(req, res) {
     console.log(query);
     try {
         db.updateData(query, array_data, function(result) {
-            if (req.body.permission == 'admin') {
+            if (req.body.permission.trim() == 'admin') {
                 if(req.body.Type == 'UniqueTask'){
-                    query = 'SELECT userid,tasks,sum(seconds) FROM public.taskinfo group by userid,tasks';
+                    query = 'SELECT userid,tasks,sum(seconds) as seconds,"startDate"  FROM public.taskinfo group by userid,tasks,"startDate" ';
                 } else {
                     query = 'select * from taskinfo where userid = $1 and userid != $1';
                 }
             } else {
                 if(req.body.Type == 'UniqueTask'){
                     console.log('asdasd')
-                    query = 'SELECT userid,tasks,sum(seconds) as seconds FROM public.taskinfo where userid = $1 group by userid,tasks  limit 100';
+                    query = 'SELECT userid,tasks,sum(seconds) as seconds,"startDate"  FROM public.taskinfo where userid = $1 group by userid,tasks,"startDate"   limit 100';
                 } else {
                     query = 'select * from taskinfo where userid = $1 limit 100';
                 }
@@ -117,15 +117,15 @@ router.delete('/tasks', function(req, res) {
     console.log(array_data);
     try {
         db.deleteData(query, array_data, function(result) {
-            if (req.body.permission == 'admin') {
+            if (req.body.permission.trim() == 'admin') {
                 if(req.body.Type == 'UniqueTask'){
-                    query = 'SELECT userid,tasks,sum(seconds) FROM public.taskinfo group by userid,tasks'
+                    query = 'SELECT userid,tasks,sum(seconds) as seconds,"startDate"  FROM public.taskinfo group by userid,tasks,"startDate" '
                 } else {
                     query = 'select * from taskinfo where userid = $1 and userid != $1';
                 }
             } else {
                 if(req.body.Type == 'UniqueTask'){
-                    query = 'SELECT userid,tasks,sum(seconds) as seconds FROM public.taskinfo where userid = $1 group by userid,tasks  limit 100'
+                    query = 'SELECT userid,tasks,sum(seconds) as seconds,"startDate"  FROM public.taskinfo where userid = $1 group by userid,tasks,"startDate"   limit 100'
                 } else {
                     query = 'select * from taskinfo where userid = $1 limit 100';
                 }

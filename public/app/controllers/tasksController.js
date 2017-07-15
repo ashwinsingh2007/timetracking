@@ -13,12 +13,13 @@
             $scope.Permission = $cookieStore.get('Permission');
             tasksFactory.getTasks($scope.UserId, $scope.Permission).then(function(data) {
                 console.log(data);
+                debugger;
                 $scope.loaded = true;
                 for(i in data){
                     if(data[i].startDate < moment().format("DD-MM-YYYY")){
-                        data[i].disbl=false;
-                    }else{
                         data[i].disbl=true;
+                    }else{
+                        data[i].disbl=false;
                     }
                 }
                 $scope.tasks = data;

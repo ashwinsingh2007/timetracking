@@ -16,14 +16,15 @@
             </thead>
             <tbody>
                 <tr ng-repeat="task in tasks" class="ng-scope" >
-                    <td ng-class="{ disabled: task.disbl}">
-                        <input type="text" class="input input-projectname" ng-model="task.tasks" ng-click="savePreviousTask(task.tasks)" ng-blur="updateTask(task.tasks)" />   
+                    <td >
+                        <input type="text" ng-disabled=task.disbl class="input input-projectname" ng-model="task.tasks" ng-click="savePreviousTask(task.tasks)" ng-blur="updateTask(task.tasks)" />   
                     </td>
                     <td>
                         {{ getTimeSpent(task) }}
                     </td>
                     <td class="align-left" ng-class="{ disabled: task.disbl}">
-                        <a class="button button-inline button-delete" href="" ng-click="deleteTask(task)"><i class="icon-trash"></i></a>
+                        <a class="button button-inline button-delete" ng-hide="task.disbl == true" href="" ng-click="deleteTask(task)"><i class="icon-trash"></i></a>
+                        <a style="border: 0;padding: 0; width: auto; line-height: 24px;height: 24px;text-align: center;font-size: 1.2rem;background: none;color: rgba(178, 23, 23, 0.54);" class="button button-inline button-delete" ng-show="task.disbl == true" href="">Past Created tasks,can't update or deleted.</a>
                     </td>
                 </tr>
             </tbody>
