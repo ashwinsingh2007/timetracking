@@ -50,6 +50,13 @@
             }
             tasksFactory.addTaskByUserId($scope.UserId, name,$scope.Permission).then(function(data) {
                 $scope.loaded = true;
+                for(i in data){
+                    if(data[i].startDate < moment().format("DD-MM-YYYY")){
+                        data[i].disbl=true;
+                    }else{
+                        data[i].disbl=false;
+                    }
+                }
                 $scope.tasks = data;
                 debugger;
                 $rootScope.$emit("CallMethod", data);
