@@ -23,15 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/api', apicall);
 app.get('/', function(req, res) {
-    var UserId = '1358801057566550';
-    var Permission='user';
-    //var query = 'select permission from userinfo where userid = $1';
-    //var array_data = [UserId];
-    //Permission=result[0].permission;
-
-    res.cookie('UserId', JSON.stringify(UserId));
-    res.cookie('Permission', JSON.stringify(Permission));
-    res.sendFile(path.join(__dirname, './views', 'index.html'));
+    res.sendFile(path.join(__dirname, './views', 'login.html'));
 });
 
 app.get('/account', ensureAuthenticated, function(req, res) {
